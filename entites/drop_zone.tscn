@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cr0s4sh3reyxf"]
+
+[ext_resource type="Script" uid="uid://nj1hdjl1vob2" path="res://addons/drag_and_drop/scripts/drop_zone.gd" id="1_gj6d4"]
+[ext_resource type="Script" uid="uid://b5wqxyc42r5u" path="res://addons/drag_and_drop/resources/drop_behaviors/drop_behavior_reject.gd" id="2_w41gp"]
+[ext_resource type="Script" uid="uid://djdmnemxrx7bg" path="res://addons/drag_and_drop/resources/draggable_types/draggable_type.gd" id="3_uwjsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj6d4"]
+size = Vector2(35, 50)
+
+[sub_resource type="Resource" id="Resource_yg27g"]
+script = ExtResource("2_w41gp")
+metadata/_custom_type_script = "uid://b5wqxyc42r5u"
+
+[sub_resource type="Resource" id="Resource_uwjsp"]
+script = ExtResource("3_uwjsp")
+id = "command_block"
+metadata/_custom_type_script = "uid://djdmnemxrx7bg"
+
+[node name="DropZone" type="Area2D" unique_id=1297944204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=620288311]
+shape = SubResource("RectangleShape2D_gj6d4")
+
+[node name="DropZone" type="Node2D" parent="." unique_id=2095676129 node_paths=PackedStringArray("attach_spot")]
+script = ExtResource("1_gj6d4")
+attach_spot = NodePath("..")
+drop_behavior = SubResource("Resource_yg27g")
+accepted_draggable_types = Array[ExtResource("3_uwjsp")]([SubResource("Resource_uwjsp")])
+metadata/_custom_type_script = "uid://nj1hdjl1vob2"
+
+[node name="Slot1" type="Marker2D" parent="DropZone" unique_id=583833374]
+position = Vector2(0, -17)
+
+[node name="Slot2" type="Marker2D" parent="DropZone" unique_id=1486518030]
+
+[node name="Slot3" type="Marker2D" parent="DropZone" unique_id=1799443719]
+position = Vector2(0, 16)

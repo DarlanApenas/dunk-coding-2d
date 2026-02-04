@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DraggableType" format=3 uid="uid://dbrkbr3hsu6p5"]
+
+[ext_resource type="Script" uid="uid://djdmnemxrx7bg" path="res://addons/drag_and_drop/resources/draggable_types/draggable_type.gd" id="1_k0aou"]
+
+[resource]
+script = ExtResource("1_k0aou")
+id = "command_block"
+metadata/_custom_type_script = "uid://djdmnemxrx7bg"

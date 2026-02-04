@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjgueytl2n1cj"]
+
+[ext_resource type="Script" uid="uid://dkkdo34ma40ys" path="res://scripts/bola.gd" id="1_cef5f"]
+[ext_resource type="Texture2D" uid="uid://cd1n8ewcfm0c0" path="res://resource/Ball/Ball.png" id="2_4x1jm"]
+[ext_resource type="Texture2D" uid="uid://dxdl1v35esomk" path="res://resource/Ball/ball_shadow.png" id="3_k3mec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8gq8"]
+radius = 3.535534
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_cef5f")
+lifetime = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_t8gq8")
+
+[node name="ball" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("2_4x1jm")
+
+[node name="shadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_k3mec")
