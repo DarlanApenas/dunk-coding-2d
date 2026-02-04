@@ -1,5 +1,6 @@
 extends Area2D
 @export var block_input_name: String
+@export var block_cost:int = 2
 @export_category("Juicy")
 @export var hover_scale: float = 1.15
 @export var hover_duration: float = 0.2 
@@ -9,6 +10,8 @@ extends Area2D
 var original_scale: Vector2 = Vector2.ONE
 var is_hovered: bool = false
 var current_tween: Tween
+
+var MAX_STAM = 10
 
 enum BLOCK_TYPE{
 	MOVE_LEFT,

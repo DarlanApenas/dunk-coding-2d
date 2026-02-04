@@ -34,4 +34,4 @@ position = Vector2(0, -17)
 [node name="Slot2" type="Marker2D" parent="DropZone" unique_id=1486518030]
 
 [node name="Slot3" type="Marker2D" parent="DropZone" unique_id=1799443719]
-position = Vector2(0, 16)
+position = Vector2(0, 17)

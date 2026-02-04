@@ -124,7 +124,6 @@ func _attach(area: Area2D):
 		area.reparent(attach_spot)
 	else:
 		attach_spot.add_child(area)
-
 	var draggable = area.get_meta("draggable")
 	if draggable:
 		draggable.drag_started.connect(
@@ -146,7 +145,6 @@ func _detach(area: Area2D):
 
 func _on_draggable_drag_started(area: Area2D):
 	# Temporary reparent to root while draggable in hand
-	# tá dando red aqui quando reclica
 	area.reparent(get_tree().root)
 
 	for entry in snapping_points:
