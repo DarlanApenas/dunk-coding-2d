@@ -26,10 +26,6 @@ window/size/viewport_height=200
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/drag_and_drop/plugin.cfg")
-
 [input]
 
 ui_left={

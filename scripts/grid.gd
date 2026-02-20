@@ -65,7 +65,6 @@ func get_cell_at_position(world_pos: Vector2) -> Vector2i:
 			var cell = grid_cells[y][x]
 			if cell.rect.has_point(world_pos):
 				return Vector2i(x, y)
-	
 	return Vector2i(-1, -1)  # Fora do grid
 
 func _draw():

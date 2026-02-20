@@ -1,6 +1,4 @@
 extends Area2D
-@export var block_input_name: String
-@export var block_cost:int = 2
 @export_category("Juicy")
 @export var hover_scale: float = 1.15
 @export var hover_duration: float = 0.2 
@@ -11,37 +9,12 @@ var original_scale: Vector2 = Vector2.ONE
 var is_hovered: bool = false
 var current_tween: Tween
 
-var MAX_STAM = 10
-
-enum BLOCK_TYPE{
-	MOVE_LEFT,
-	MOVE_RIGHT,
-	MOVE_UP,
-	MOVE_BACK,
-	SHOOT,
-	PASS
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Label.text = block_input_name
 	original_scale = scale
-	get_block_type_from_name(block_input_name)
-	# Conecta sinais de mouse
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-
-func get_block_type_from_name(block_input_name: String):
-	match block_input_name:
-		"move ←":
-			return BLOCK_TYPE.MOVE_LEFT
-		"move →":
-			return BLOCK_TYPE.MOVE_RIGHT
-		"move ↑":
-			return BLOCK_TYPE.MOVE_UP
-		_:
-			print("Tipo de bloco não reconhecido: ", block_input_name)
-			return -1
 func _on_mouse_entered():
 	is_hovered = true
 	animate_scale(original_scale * hover_scale)
