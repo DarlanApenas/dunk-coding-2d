@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3pl652qdm76q"]
+[gd_scene format=3 uid="uid://3pl652qdm76q"]
 
 [ext_resource type="Script" uid="uid://gyja0fid0wgr" path="res://entites/hoop.gd" id="1_4y2td"]
 [ext_resource type="Texture2D" uid="uid://dupmsuismik8r" path="res://resource/Court/Court.png" id="1_7l4mt"]
@@ -54,19 +54,19 @@ size = Vector2(3, 9)
 [sub_resource type="Theme" id="Theme_ecu65"]
 default_font = ExtResource("5_mdgns")
 
-[node name="Hoop" type="Node2D"]
+[node name="Hoop" type="Node2D" unique_id=901889454]
 script = ExtResource("1_4y2td")
 
-[node name="RimSprite" type="AnimatedSprite2D" parent="."]
+[node name="RimSprite" type="AnimatedSprite2D" parent="." unique_id=1827517587]
 sprite_frames = SubResource("SpriteFrames_avtsd")
 
-[node name="NetSprite" type="AnimatedSprite2D" parent="."]
+[node name="NetSprite" type="AnimatedSprite2D" parent="." unique_id=2127041856]
 z_index = 4
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_4y2td")
 offset = Vector2(0, 4)
 
-[node name="ScoreZone" type="Area2D" parent="."]
+[node name="ScoreZone" type="Area2D" parent="." unique_id=41290585]
 position = Vector2(0, -6)
 script = ExtResource("2_avtsd")
 show_debug = false
@@ -74,27 +74,28 @@ debug_width = 10.0
 min_fall_speed = 40.0
 vertical_margin = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone" unique_id=87262006]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_mdgns")
 
-[node name="Rim" type="StaticBody2D" parent="."]
+[node name="Rim" type="StaticBody2D" parent="." unique_id=619006255]
 physics_material_override = SubResource("PhysicsMaterial_avtsd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rim"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rim" unique_id=1088019438]
 position = Vector2(-6, -5.75)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_mdgns")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Rim"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Rim" unique_id=995810597]
 position = Vector2(8, -5.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_ecu65")
 
-[node name="Text" type="CanvasLayer" parent="."]
+[node name="Text" type="CanvasLayer" parent="." unique_id=345322298]
+visible = false
 script = ExtResource("4_83tmo")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Text" unique_id=1259816072]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
