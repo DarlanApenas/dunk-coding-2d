@@ -3,9 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://bn1v5kbhcben4" path="res://resource/Decor/temp-block.png" id="1_4igxf"]
 [ext_resource type="Script" uid="uid://bvy74egptcoup" path="res://scripts/dragndrop.gd" id="1_lgte1"]
 [ext_resource type="Script" uid="uid://dwv55jo1na815" path="res://scripts/block_attributes.gd" id="2_4igxf"]
+[ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="4_dbusf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1i0"]
 size = Vector2(30, 11)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dbusf"]
+line_spacing = 0.0
+font = ExtResource("4_dbusf")
+font_size = 7
 
 [node name="Node2D" type="Node2D" unique_id=2138045806]
 script = ExtResource("1_lgte1")
@@ -13,12 +19,22 @@ script = ExtResource("1_lgte1")
 [node name="Block" type="Area2D" parent="." unique_id=641921668]
 script = ExtResource("2_4igxf")
 
-[node name="Sprite2D" type="Sprite2D" parent="Block" unique_id=332992907]
-texture = ExtResource("1_4igxf")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block" unique_id=510941315]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_yr1i0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Block" unique_id=332992907]
+texture = ExtResource("1_4igxf")
+
+[node name="Label" type="Label" parent="Block" unique_id=104037561]
+offset_left = -18.0
+offset_top = -11.0
+offset_right = 22.0
+offset_bottom = 12.0
+text = "block ()"
+label_settings = SubResource("LabelSettings_dbusf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="input_event" from="Block" to="." method="_on_block_input_event"]
 [connection signal="mouse_entered" from="Block" to="Block" method="_on_mouse_entered"]

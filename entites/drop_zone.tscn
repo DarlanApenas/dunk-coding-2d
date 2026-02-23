@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cr0s4sh3reyxf"]
 
 [ext_resource type="Script" uid="uid://bk5t33n0c65fk" path="res://scripts/drop_zone.gd" id="1_gj6d4"]
+[ext_resource type="Texture2D" uid="uid://dnuwcjvejbte3" path="res://resource/Decor/drop_zone.png" id="2_kloor"]
 
 [node name="drop_zone" type="Node2D" unique_id=1435784591 groups=["zone"]]
 script = ExtResource("1_gj6d4")
+slot_height = 15.0
+snap_radius = 20.0
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=10151398]
-visible = false
-offset_left = -20.0
-offset_top = -9.0
-offset_right = 20.0
-offset_bottom = 57.0
-pivot_offset = Vector2(20, 9)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1937531600]
+z_index = -2
+position = Vector2(-2, -6)
+texture = ExtResource("2_kloor")
+offset = Vector2(0, 26)

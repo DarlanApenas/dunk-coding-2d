@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var block_type: String = ""
+@onready var label: Label = $Block/Label
 
 var selected = false
 var in_grid = false
@@ -9,6 +10,7 @@ var rest_point = Vector2.ZERO
 var origin_position = Vector2.ZERO
 
 func _ready():
+	label.text = block_type
 	origin_position = global_position
 	rest_point = global_position
 
@@ -51,7 +53,5 @@ func _find_closest_zone() -> Node:
 	var zones = get_tree().get_nodes_in_group("zone")
 	for zone in zones:
 		if zone.is_near(get_global_mouse_position()):
-			print("Distância para zone: ", zone.global_position.distance_to(get_global_mouse_position()))
-			print("Snap radius: ", zone.snap_radius)
 			return zone
 	return null

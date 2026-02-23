@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var accepted_types: Array[String] = ["normal"]
+@export var accepted_types: Array[String] = ["","move"]
 @export var slot_height: float = 16.0
 @export var snap_radius: float = 15.0
 
