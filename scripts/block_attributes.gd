@@ -9,7 +9,6 @@ var original_scale: Vector2 = Vector2.ONE
 var is_hovered: bool = false
 var current_tween: Tween
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	original_scale = scale

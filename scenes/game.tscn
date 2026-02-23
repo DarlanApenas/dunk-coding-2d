@@ -4804,11 +4804,17 @@ position = Vector2(324, 110)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1740699742]
 
+[node name="Block" parent="UI" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
+position = Vector2(61, 104)
+block_type = "normal"
+
+[node name="Block2" parent="UI" unique_id=1094495301 instance=ExtResource("11_kvpfn")]
+position = Vector2(106, 76)
+block_type = "normal"
+
+[node name="Block3" parent="UI" unique_id=1101247135 instance=ExtResource("11_kvpfn")]
+position = Vector2(187, 76)
+block_type = "normal"
+
 [node name="drop_zone" parent="UI" unique_id=1787792880 instance=ExtResource("12_dinhu")]
-position = Vector2(244, 162)
-
-[node name="drop_zone2" parent="UI" unique_id=2014510017 instance=ExtResource("12_dinhu")]
-position = Vector2(116, 71)
-
-[node name="Node2D" parent="UI" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
-position = Vector2(16, 164)
+position = Vector2(271, 155)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bn1v5kbhcben4" path="res://resource/Decor/temp-block.png" id="1_4igxf"]
 [ext_resource type="Script" uid="uid://bvy74egptcoup" path="res://scripts/dragndrop.gd" id="1_lgte1"]
+[ext_resource type="Script" uid="uid://dwv55jo1na815" path="res://scripts/block_attributes.gd" id="2_4igxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1i0"]
 size = Vector2(30, 11)
@@ -10,6 +11,7 @@ size = Vector2(30, 11)
 script = ExtResource("1_lgte1")
 
 [node name="Block" type="Area2D" parent="." unique_id=641921668]
+script = ExtResource("2_4igxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Block" unique_id=332992907]
 texture = ExtResource("1_4igxf")
@@ -19,3 +21,5 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_yr1i0")
 
 [connection signal="input_event" from="Block" to="." method="_on_block_input_event"]
+[connection signal="mouse_entered" from="Block" to="Block" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Block" to="Block" method="_on_mouse_exited"]
