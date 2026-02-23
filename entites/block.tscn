@@ -11,7 +11,7 @@ size = Vector2(30, 11)
 [sub_resource type="LabelSettings" id="LabelSettings_dbusf"]
 line_spacing = 0.0
 font = ExtResource("4_dbusf")
-font_size = 7
+font_size = 5
 
 [node name="Node2D" type="Node2D" unique_id=2138045806]
 script = ExtResource("1_lgte1")
@@ -27,11 +27,10 @@ shape = SubResource("RectangleShape2D_yr1i0")
 texture = ExtResource("1_4igxf")
 
 [node name="Label" type="Label" parent="Block" unique_id=104037561]
-offset_left = -18.0
+offset_left = -19.0
 offset_top = -11.0
-offset_right = 22.0
+offset_right = 21.0
 offset_bottom = 12.0
-text = "block ()"
 label_settings = SubResource("LabelSettings_dbusf")
 horizontal_alignment = 1
 vertical_alignment = 1

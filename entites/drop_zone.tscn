@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bk5t33n0c65fk" path="res://scripts/drop_zone.gd" id="1_gj6d4"]
 [ext_resource type="Texture2D" uid="uid://dnuwcjvejbte3" path="res://resource/Decor/drop_zone.png" id="2_kloor"]
+[ext_resource type="Texture2D" uid="uid://cdtlkl3ajc0tl" path="res://resource/Decor/play-button.png" id="3_w41gp"]
 
 [node name="drop_zone" type="Node2D" unique_id=1435784591 groups=["zone"]]
 script = ExtResource("1_gj6d4")
@@ -13,3 +14,12 @@ z_index = -2
 position = Vector2(-2, -6)
 texture = ExtResource("2_kloor")
 offset = Vector2(0, 26)
+
+[node name="RunButton" type="Button" parent="." unique_id=9749966]
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 57.0
+offset_bottom = 56.0
+icon = ExtResource("3_w41gp")
+flat = true
+icon_alignment = 1

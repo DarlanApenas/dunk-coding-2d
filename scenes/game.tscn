@@ -4806,14 +4806,23 @@ position = Vector2(324, 110)
 
 [node name="Block" parent="UI" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
 position = Vector2(20, 41)
-block_type = "move"
+block_type = "MOVE →"
 
 [node name="Block2" parent="UI" unique_id=1094495301 instance=ExtResource("11_kvpfn")]
 position = Vector2(20, 54)
-block_type = "move"
+block_type = "MOVE ←"
 
 [node name="Block3" parent="UI" unique_id=1101247135 instance=ExtResource("11_kvpfn")]
 position = Vector2(20, 67)
+block_type = "MOVE ↑"
+
+[node name="Block4" parent="UI" unique_id=741082972 instance=ExtResource("11_kvpfn")]
+position = Vector2(20, 80)
+block_type = "MOVE ↓"
+
+[node name="Block5" parent="UI" unique_id=21002463 instance=ExtResource("11_kvpfn")]
+position = Vector2(20, 93)
+block_type = "SHOOT!"
 
 [node name="drop_zone" parent="UI" unique_id=1787792880 instance=ExtResource("12_dinhu")]
-position = Vector2(52, 140)
+position = Vector2(31, 148)

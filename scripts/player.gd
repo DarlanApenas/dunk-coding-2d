@@ -7,46 +7,37 @@ extends CharacterBody2D
 @export var throw_arc := 350.0
 @export var grid: Node2D
 
-const SPEED := 60.0
+const SPEED := 100.0
 
 var is_doing_action := false
 var active_ball: Ball = null
 var is_shooting := false
 var ball_released := false
 
+var command_queue: Array = []
+var is_executing := false
+
 @export var sprite_offset: Vector2 = Vector2(0, 12)  # Offset para pés no chão
 var current_grid_pos: Vector2i = Vector2i(0, 1)
 var is_moving_grid := false
-var move_duration := 1
+var move_duration := 0.9
 
 func _ready():
-	# Tenta encontrar o grid automaticamente
 	if not grid:
 		grid = get_tree().get_first_node_in_group("grid")
-	# Posiciona o player na célula inicial [0,1]
 	if grid:
 		snap_to_grid(current_grid_pos.x, current_grid_pos.y)
-		# print("✓ Player iniciado na célula [0,1]")
+	GameEvents.run_pressed.connect(_on_run_pressed)
 
 func _physics_process(_delta: float) -> void:
 	if is_doing_action or is_moving_grid:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-	
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	if Input.is_action_just_pressed("dribble"):
 		play_dribble()
-	# Detecta input de movimento
-	if Input.is_action_just_pressed("right"):
-		move_grid(1, 0)
-	elif Input.is_action_just_pressed("left"):
-		move_grid(-1, 0)
-	elif Input.is_action_just_pressed("down"):
-		move_grid(0, 1)
-	elif Input.is_action_just_pressed("up"):
-		move_grid(0, -1)
 
 func move_grid(dx: int, dy: int):
 	if not grid or is_moving_grid:
@@ -55,8 +46,8 @@ func move_grid(dx: int, dy: int):
 	var new_x = current_grid_pos.x + dx
 	var new_y = current_grid_pos.y + dy
 	
-	# Valida movimento
 	if not grid.is_valid_cell(new_x, new_y):
+		execute_next_command()
 		return
 	
 	# Atualiza flip baseado na direção
@@ -64,15 +55,10 @@ func move_grid(dx: int, dy: int):
 		anim.flip_h = false
 	elif dx < 0:
 		anim.flip_h = true
-	
-	# Inicia animação de correr
 	anim.play("run_wball")
-	
-	# Move
 	current_grid_pos = Vector2i(new_x, new_y)
 	is_moving_grid = true
 	
-	# Anima movimento
 	var target_pos = grid.get_cell_center(new_x, new_y)
 	animate_to_position(target_pos)
 	
@@ -86,8 +72,9 @@ func animate_to_position(target: Vector2):
 
 func _on_move_finished():
 	is_moving_grid = false
-	# Volta para animação idle
 	anim.play("idle_bouncing")
+	if is_executing:
+		execute_next_command()
 
 func snap_to_grid(grid_x: int, grid_y: int):
 	if not grid:
@@ -160,3 +147,24 @@ func _on_action_finished() -> void:
 	is_doing_action = false
 	anim.animation_finished.disconnect(_on_action_finished)
 	anim.play("idle_bouncing")
+	
+func _on_run_pressed(stack: Array):
+	command_queue.clear()
+	for block in stack:
+		command_queue.append(block.block_type)
+	execute_next_command()
+
+func execute_next_command():
+	if command_queue.is_empty():
+		is_executing = false
+		return
+	is_executing = true
+	var command = command_queue.pop_back()
+	match command:
+		"MOVE ↑":    move_grid(0, -1)
+		"MOVE ↓":   move_grid(0, 1)
+		"MOVE ←": move_grid(-1, 0)
+		"MOVE →":  move_grid(1, 0)
+		"SHOOT!":  shoot()
+		_:
+			execute_next_command()
