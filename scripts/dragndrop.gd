@@ -1,7 +1,9 @@
 extends Node2D
 
 @export var block_type: String = ""
+@export var block_cost: int = 1
 @onready var label: Label = $Block/Label
+@onready var mana_label: Label = $Block/Mana/Label
 
 var selected = false
 var in_grid = false
@@ -10,6 +12,7 @@ var rest_point = Vector2.ZERO
 var origin_position = Vector2.ZERO
 
 func _ready():
+	mana_label.text = str(block_cost)
 	label.text = block_type
 	origin_position = global_position
 	rest_point = global_position

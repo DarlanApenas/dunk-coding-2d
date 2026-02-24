@@ -142,6 +142,7 @@ func _on_shoot_finished() -> void:
 	if anim.animation_finished.is_connected(_on_shoot_finished):
 		anim.animation_finished.disconnect(_on_shoot_finished)
 		anim.play("idle_bouncing")
+		execute_next_command()
 
 func _on_action_finished() -> void:
 	is_doing_action = false
@@ -150,8 +151,11 @@ func _on_action_finished() -> void:
 	
 func _on_run_pressed(stack: Array):
 	command_queue.clear()
-	for block in stack:
-		command_queue.append(block.block_type)
+	var total_cost = 0
+	for entry in stack:
+		command_queue.append(entry["type"])
+		total_cost += entry["cost"]
+	print("Custo total da jogada: ", total_cost)
 	execute_next_command()
 
 func execute_next_command():

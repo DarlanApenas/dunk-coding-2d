@@ -20,17 +20,23 @@ func try_add_block(block, insert_index: int = -1) -> bool:
 	if not block.block_type in accepted_types:
 		return false
 
-	# Define índice de inserção
 	if insert_index == -1 or insert_index >= stack.size():
 		insert_index = stack.size()
-
 	insert_index = clamp(insert_index, 0, stack.size())
-	stack.insert(insert_index, block)
+
+	stack.insert(insert_index, {
+		"block": block,
+		"type": block.block_type,
+		"cost": block.block_cost
+	})
 	_reposition_all()
 	return true
-
+	
 func remove_block(block):
-	stack.erase(block)
+	for i in stack.size():
+		if stack[i]["block"] == block:
+			stack.remove_at(i)
+			break
 	_reposition_all()
 
 func get_insert_index(mouse_y: float) -> int:
@@ -43,13 +49,13 @@ func is_near(point: Vector2) -> bool:
 
 func _reposition_all():
 	for i in stack.size():
-		var block = stack[i]
+		var block = stack[i]["block"]
 		block.rest_point = global_position + Vector2(0, i * slot_height)
 	
 func _on_run_pressed():
 	GameEvents.run_pressed.emit(stack.duplicate())
-	for block in stack:
-		block.in_grid = false
-		block.current_zone = null
-		block.rest_point = block.origin_position
+	for entry in stack:
+		entry["block"].in_grid = false
+		entry["block"].current_zone = null
+		entry["block"].rest_point = entry["block"].origin_position
 	stack.clear()
