@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var label: Label = $"../UI/Label"
+@onready var mana_counter: Label = $"../UI/ManaCounter"
 
 @export var ball_scene: PackedScene
 @export var throw_force := 180.0
@@ -30,7 +30,9 @@ func _ready():
 	GameEvents.run_pressed.connect(_on_run_pressed)
 
 func _physics_process(_delta: float) -> void:
-	label.text = str(max_mana)
+	mana_counter.text = str(max_mana)
+	if max_mana == 0:
+		max_mana = 5
 	if is_doing_action or is_moving_grid:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -152,7 +154,7 @@ func _on_run_pressed(stack: Array):
 	else:
 		max_mana -= total_cost
 		execute_next_command()
-	
+
 func execute_next_command():
 	if command_queue.is_empty():
 		is_executing = false

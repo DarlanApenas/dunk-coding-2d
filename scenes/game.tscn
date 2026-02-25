@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c47i7tmfpklxi" path="res://scripts/grid.gd" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://iql84u24fhne" path="res://resource/Decor/cell_grid.png" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://mg3mp4681aqn" path="res://entites/block.tscn" id="11_kvpfn"]
+[ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="11_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="12_dinhu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
@@ -4757,6 +4758,10 @@ texture = ExtResource("5_p57ef")
 [sub_resource type="TileSet" id="TileSet_p57ef"]
 sources/0 = SubResource("TileSetAtlasSource_u5sy4")
 
+[sub_resource type="LabelSettings" id="LabelSettings_trtic"]
+font = ExtResource("11_kvuet")
+font_size = 14
+
 [node name="Game" type="Node2D" unique_id=2046420747]
 metadata/_edit_horizontal_guides_ = [170.0, 221.0]
 
@@ -4804,36 +4809,37 @@ position = Vector2(324, 110)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1740699742]
 
-[node name="Label" type="Label" parent="UI" unique_id=657555005]
-offset_left = 5.0
-offset_top = 109.0
-offset_right = 45.0
-offset_bottom = 132.0
+[node name="ManaCounter" type="Label" parent="UI" unique_id=657555005]
+offset_left = 65.0
+offset_top = 166.0
+offset_right = 75.0
+offset_bottom = 179.0
 text = "0"
+label_settings = SubResource("LabelSettings_trtic")
 
 [node name="Block" parent="UI" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 41)
+position = Vector2(20, 96)
 block_type = "MOVE →"
 
 [node name="Block2" parent="UI" unique_id=1094495301 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 54)
+position = Vector2(20, 109)
 block_type = "MOVE ←"
 
 [node name="Block3" parent="UI" unique_id=1101247135 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 67)
+position = Vector2(54, 96)
 block_type = "MOVE ↑"
 
 [node name="Block4" parent="UI" unique_id=741082972 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 80)
+position = Vector2(54, 109)
 block_type = "MOVE ↓"
 
 [node name="Block5" parent="UI" unique_id=21002463 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 93)
+position = Vector2(20, 122)
 block_type = "SHOOT!"
 block_cost = 2
 
 [node name="Block6" parent="UI" unique_id=1785349164 instance=ExtResource("11_kvpfn")]
-position = Vector2(20, 106)
+position = Vector2(54, 122)
 block_type = "DRIBBLE"
 block_cost = 3
 
