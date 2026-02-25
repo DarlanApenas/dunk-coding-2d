@@ -6,6 +6,7 @@ extends Node2D
 	"MOVE ↑",
 	"MOVE ↓",
 	"SHOOT!",
+	"DRIBBLE"
 	]
 @export var slot_height: float = 16.0
 @export var snap_radius: float = 15.0

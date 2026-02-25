@@ -4804,6 +4804,13 @@ position = Vector2(324, 110)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1740699742]
 
+[node name="Label" type="Label" parent="UI" unique_id=657555005]
+offset_left = 5.0
+offset_top = 109.0
+offset_right = 45.0
+offset_bottom = 132.0
+text = "0"
+
 [node name="Block" parent="UI" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
 position = Vector2(20, 41)
 block_type = "MOVE →"
@@ -4824,6 +4831,11 @@ block_type = "MOVE ↓"
 position = Vector2(20, 93)
 block_type = "SHOOT!"
 block_cost = 2
+
+[node name="Block6" parent="UI" unique_id=1785349164 instance=ExtResource("11_kvpfn")]
+position = Vector2(20, 106)
+block_type = "DRIBBLE"
+block_cost = 3
 
 [node name="drop_zone" parent="UI" unique_id=1787792880 instance=ExtResource("12_dinhu")]
 position = Vector2(31, 148)

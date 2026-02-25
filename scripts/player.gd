@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var label: Label = $"../UI/Label"
 
 @export var ball_scene: PackedScene
 @export var throw_force := 180.0
 @export var throw_arc := 350.0
 @export var grid: Node2D
+@export var sprite_offset: Vector2 = Vector2(0, 12)  # Offset para pés no chão
+@export var max_mana: int = 5
 
 const SPEED := 100.0
 
@@ -13,11 +16,8 @@ var is_doing_action := false
 var active_ball: Ball = null
 var is_shooting := false
 var ball_released := false
-
 var command_queue: Array = []
 var is_executing := false
-
-@export var sprite_offset: Vector2 = Vector2(0, 12)  # Offset para pés no chão
 var current_grid_pos: Vector2i = Vector2i(0, 1)
 var is_moving_grid := false
 var move_duration := 0.9
@@ -30,14 +30,11 @@ func _ready():
 	GameEvents.run_pressed.connect(_on_run_pressed)
 
 func _physics_process(_delta: float) -> void:
+	label.text = str(max_mana)
 	if is_doing_action or is_moving_grid:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	if Input.is_action_just_pressed("dribble"):
-		play_dribble()
 
 func move_grid(dx: int, dy: int):
 	if not grid or is_moving_grid:
@@ -79,17 +76,11 @@ func _on_move_finished():
 func snap_to_grid(grid_x: int, grid_y: int):
 	if not grid:
 		return
-	
 	if not grid.is_valid_cell(grid_x, grid_y):
-		#print("⚠️ Célula inválida: [%d,%d]" % [grid_x, grid_y])
 		return
-	
 	current_grid_pos = Vector2i(grid_x, grid_y)
 	var target_pos = grid.get_cell_center(grid_x, grid_y)
-	
 	global_position = target_pos - sprite_offset
-	
-	#print("📍 Player posicionado em [%d,%d]" % [grid_x, grid_y])
 
 func throw_ball() -> void:
 	if active_ball != null:
@@ -112,6 +103,7 @@ func play_dribble() -> void:
 	anim.play("fast_cross")
 	if not anim.animation_finished.is_connected(_on_action_finished):
 		anim.animation_finished.connect(_on_action_finished)
+	execute_next_command()
 
 func shoot() -> void:
 	if is_doing_action or active_ball != null:
@@ -155,9 +147,12 @@ func _on_run_pressed(stack: Array):
 	for entry in stack:
 		command_queue.append(entry["type"])
 		total_cost += entry["cost"]
-	print("Custo total da jogada: ", total_cost)
-	execute_next_command()
-
+	if total_cost > max_mana:
+		print("Vai ficar devendo pae: ", total_cost)
+	else:
+		max_mana -= total_cost
+		execute_next_command()
+	
 func execute_next_command():
 	if command_queue.is_empty():
 		is_executing = false
@@ -170,5 +165,6 @@ func execute_next_command():
 		"MOVE ←": move_grid(-1, 0)
 		"MOVE →":  move_grid(1, 0)
 		"SHOOT!":  shoot()
+		"DRIBBLE": play_dribble()
 		_:
 			execute_next_command()
