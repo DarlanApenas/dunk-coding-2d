@@ -17,7 +17,7 @@ func _ready():
 	origin_position = global_position
 	rest_point = global_position
 
-func _on_block_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _on_block_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int):
 	if Input.is_action_just_pressed("draggable_click"):
 		selected = true
 		if in_grid and current_zone != null:

@@ -9,6 +9,7 @@ func _ready():
 	
 func _on_score_zone_body_entered(body: Node2D) -> void:
 	if body is Ball:
+		body.activate_bounce()  # ativa o bounce a partir daqui
 		play_net_squash_stretch(abs(body.vertical_velocity) / 300.0)
 		splash_text.play()
 

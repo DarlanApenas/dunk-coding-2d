@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjgueytl2n1cj"]
+[gd_scene format=3 uid="uid://cjgueytl2n1cj"]
 
 [ext_resource type="Script" uid="uid://dkkdo34ma40ys" path="res://scripts/bola.gd" id="1_cef5f"]
 [ext_resource type="Texture2D" uid="uid://cd1n8ewcfm0c0" path="res://resource/Ball/Ball.png" id="2_4x1jm"]
@@ -7,17 +7,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8gq8"]
 radius = 3.535534
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="CharacterBody2D" unique_id=1160406378]
 script = ExtResource("1_cef5f")
-lifetime = 2.0
+gravity = 450.0
+flight_time_scale = 2.0
+bounce = 0.3
+friction = 0.4
+ground_offset = -60.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352712210]
 position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_t8gq8")
 
-[node name="ball" type="Sprite2D" parent="."]
+[node name="ball" type="Sprite2D" parent="." unique_id=2059498681]
 z_index = 2
 texture = ExtResource("2_4x1jm")
 
-[node name="shadow" type="Sprite2D" parent="."]
+[node name="shadow" type="Sprite2D" parent="." unique_id=968923399]
+visible = false
 texture = ExtResource("3_k3mec")

@@ -2,10 +2,9 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var mana_counter: Label = $"../UI/ManaCounter"
+@onready var hoop: Node2D = $"../Hoop"
 
 @export var ball_scene: PackedScene
-@export var throw_force := 180.0
-@export var throw_arc := 350.0
 @export var grid: Node2D
 @export var sprite_offset: Vector2 = Vector2(0, 12)  # Offset para pés no chão
 @export var max_mana: int = 5
@@ -88,14 +87,13 @@ func throw_ball() -> void:
 	if active_ball != null:
 		return
 	var ball: Ball = ball_scene.instantiate()
-	get_parent().add_child(ball)
+	hoop.get_parent().add_child(ball)  # mesmo pai do hoop = mesmo referencial
 	ball.global_position = global_position
 	active_ball = ball
 	ball.tree_exited.connect(func():
 		active_ball = null
 	)
-	var dir := Vector2.RIGHT if not anim.flip_h else Vector2.LEFT
-	ball.throw(dir, throw_force, throw_arc)
+	ball.throw(hoop.global_position)
 
 func play_dribble() -> void:
 	if is_doing_action:

@@ -79,6 +79,7 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_mdgns")
 
 [node name="Rim" type="StaticBody2D" parent="." unique_id=619006255]
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_avtsd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rim" unique_id=1088019438]

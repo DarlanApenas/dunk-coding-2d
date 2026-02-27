@@ -1,13 +1,18 @@
 class_name Ball
 extends CharacterBody2D
 
-@export_category('BOUNCE')
+@export_category('ARREMESSO')
 @export var gravity := 900.0
-@export var bounce := 0.6
-@export var friction := 0.95
+@export var arc_height := 5.0       # arco estético — ajuste no inspetor
+@export var flight_time_scale := 50.0  # divisor da distância pro tempo de voo
 
 @export_category('VARIAVEIS')
-@export var lifetime := 6.0  # segundos
+@export var lifetime := 6.0
+
+@export_category('BOUNCE')
+@export var bounce := 0.6
+@export var friction := 0.95
+@export var ground_offset: float = 0.0  # define onde é o "chão" após a cesta
 
 @onready var sprite: Sprite2D = $ball
 @onready var shadow: Sprite2D = $shadow
@@ -16,66 +21,63 @@ extends CharacterBody2D
 var height: float = 0.0
 var vertical_velocity: float = 0.0
 var horizontal_velocity: Vector2 = Vector2.ZERO
+var _bounce_active: bool = false  # false = indo para cesta | true = física livre
 
 func _ready() -> void:
-	
-	# Timer de vida
 	var timer: Timer = Timer.new()
 	timer.wait_time = lifetime
 	timer.one_shot = true
 	timer.timeout.connect(_on_lifetime_end)
 	add_child(timer)
 	timer.start()
-	
-	# Metadados
+
 	set_meta("scored", false)
-	set_meta("in_hoop_area", false)
-	set_meta("rim_hit_registered", false)
 
 func _physics_process(delta: float) -> void:
-	# Física vertical (gravidade e quique)
 	vertical_velocity -= gravity * delta
 	height += vertical_velocity * delta
-	
-	# Chão
-	if height <= 0.0:
-		height = 0.0
+
+	if _bounce_active and height <= ground_offset:
+		height = ground_offset
 		if abs(vertical_velocity) > 30.0:
 			vertical_velocity = -vertical_velocity * bounce
 			squash_and_stretch()
 		else:
 			vertical_velocity = 0.0
-			squash_and_stretch()
+			horizontal_velocity = Vector2.ZERO
 		horizontal_velocity *= friction
-	
-	# Movimento horizontal
+	elif not _bounce_active and height <= 0.0:
+		# Segurança: se nunca entrou no ScoreZone, para no chão
+		height = 0.0
+		vertical_velocity = 0.0
+		horizontal_velocity = Vector2.ZERO
+
 	velocity = horizontal_velocity
 	move_and_slide()
-	
-	# Atualiza visual E collision
 	update_visual()
-	update_collision()  # NOVO
+	update_collision()
 
 func update_visual() -> void:
-	# Posição vertical da sprite (altura)
 	sprite.position.y = -height
-	
-	# Escala da sombra baseada na altura
-	var shadow_scale: float = clamp(
-		1.0 - height / 200.0,
-		0.4,
-		1.0
-	)
+	var shadow_scale: float = clamp(1.0 - height / 200.0, 0.4, 1.0)
 	shadow.scale = Vector2.ONE * shadow_scale
 
 func update_collision() -> void:
-	"""NOVO: Move o CollisionShape junto com a altura da bola"""
 	if collision_shape:
 		collision_shape.position.y = -height
 
-func throw(direction: Vector2, force: float, arc_force: float) -> void:
-	horizontal_velocity = direction.normalized() * force
-	vertical_velocity = arc_force
+func throw(target_global_pos: Vector2) -> void:
+	var displacement: Vector2 = target_global_pos - global_position
+	var distance: float = displacement.length()
+	var ft: float = clamp(distance / flight_time_scale, 0.4, 1.2)
+
+	horizontal_velocity = displacement / ft
+	height = 0.0
+	vertical_velocity = (arc_height + 0.5 * gravity * ft * ft) / ft
+
+func activate_bounce() -> void:
+	"""Chamada pelo Hoop quando a bola entra no ScoreZone"""
+	_bounce_active = true
 
 func squash_and_stretch() -> void:
 	sprite.scale = Vector2(1.3, 0.7)
@@ -87,21 +89,11 @@ func squash_and_stretch() -> void:
 func _on_lifetime_end() -> void:
 	queue_free()
 
-# Funções auxiliares
-
-func get_height() -> float:
-	return height
-
-func get_vertical_velocity() -> float:
-	return vertical_velocity
-
 func is_falling() -> bool:
 	return vertical_velocity < 0
 
 func is_on_ground() -> bool:
-	return height <= 0.0
+	return height <= ground_offset
 
-func on_scored():
-	"""Chamada quando a bola pontua"""
+func on_scored() -> void:
 	set_meta("scored", true)
-	# Efeitos visuais aqui
