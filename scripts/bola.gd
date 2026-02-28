@@ -21,7 +21,7 @@ extends CharacterBody2D
 var height: float = 0.0
 var vertical_velocity: float = 0.0
 var horizontal_velocity: Vector2 = Vector2.ZERO
-var _bounce_active: bool = false  # false = indo para cesta | true = física livre
+var _bounce_active: bool = false
 
 func _ready() -> void:
 	var timer: Timer = Timer.new()
@@ -30,7 +30,6 @@ func _ready() -> void:
 	timer.timeout.connect(_on_lifetime_end)
 	add_child(timer)
 	timer.start()
-
 	set_meta("scored", false)
 
 func _physics_process(delta: float) -> void:
@@ -76,7 +75,6 @@ func throw(target_global_pos: Vector2) -> void:
 	vertical_velocity = (arc_height + 0.5 * gravity * ft * ft) / ft
 
 func activate_bounce() -> void:
-	"""Chamada pelo Hoop quando a bola entra no ScoreZone"""
 	_bounce_active = true
 
 func squash_and_stretch() -> void:

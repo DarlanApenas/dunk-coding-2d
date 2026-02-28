@@ -87,8 +87,8 @@ func throw_ball() -> void:
 	if active_ball != null:
 		return
 	var ball: Ball = ball_scene.instantiate()
-	hoop.get_parent().add_child(ball)  # mesmo pai do hoop = mesmo referencial
-	ball.global_position = global_position
+	hoop.get_parent().add_child(ball)
+	ball.global_position = global_position + Vector2(0.0,5.0)
 	active_ball = ball
 	ball.tree_exited.connect(func():
 		active_ball = null
@@ -148,7 +148,7 @@ func _on_run_pressed(stack: Array):
 		command_queue.append(entry["type"])
 		total_cost += entry["cost"]
 	if total_cost > max_mana:
-		print("Vai ficar devendo pae: ", total_cost)
+		return
 	else:
 		max_mana -= total_cost
 		execute_next_command()
