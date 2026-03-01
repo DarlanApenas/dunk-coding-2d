@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameEvents="*uid://di0h11i0ldeak"
+LevelManager="*uid://dwcyaadfwojrh"
 
 [display]
 

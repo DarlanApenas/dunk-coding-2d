@@ -2,6 +2,7 @@ extends Node2D
 
 @export var block_type: String = ""
 @export var block_cost: int = 1
+@export var block_color: Texture2D
 @onready var label: Label = $Block/Label
 @onready var mana_label: Label = $Block/Mana/Label
 
@@ -12,6 +13,7 @@ var rest_point = Vector2.ZERO
 var origin_position = Vector2.ZERO
 
 func _ready():
+	$Block/Sprite2D.texture = block_color
 	mana_label.text = str(block_cost)
 	label.text = block_type
 	origin_position = global_position

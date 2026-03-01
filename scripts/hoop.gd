@@ -1,17 +1,18 @@
 extends Node2D
 
+signal scored
+
 @onready var score_zone: ScoreBox = $ScoreZone
 @onready var net_sprite: AnimatedSprite2D = $NetSprite
-@onready var splash_text: SplashText = $Text
 
 func _ready():
 	score_zone.body_entered.connect(_on_score_zone_body_entered)
 	
 func _on_score_zone_body_entered(body: Node2D) -> void:
 	if body is Ball:
-		body.activate_bounce()  # ativa o bounce a partir daqui
+		body.activate_bounce()
 		play_net_squash_stretch(abs(body.vertical_velocity) / 300.0)
-		splash_text.play()
+		scored.emit()
 
 func play_net_squash_stretch(force := 1.0):
 	var squash := Vector2(1.1 + 0.1 * force, 0.8 - 0.1 * force)

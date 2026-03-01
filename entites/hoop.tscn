@@ -1,25 +1,8 @@
 [gd_scene format=3 uid="uid://3pl652qdm76q"]
 
-[ext_resource type="Script" uid="uid://gyja0fid0wgr" path="res://entites/hoop.gd" id="1_4y2td"]
+[ext_resource type="Script" uid="uid://gyja0fid0wgr" path="res://scripts/hoop.gd" id="1_4y2td"]
 [ext_resource type="Texture2D" uid="uid://dupmsuismik8r" path="res://resource/Court/Court.png" id="1_7l4mt"]
 [ext_resource type="Script" uid="uid://blvlytrsyn37f" path="res://scripts/score_zone.gd" id="2_avtsd"]
-[ext_resource type="Script" uid="uid://d1n64x76c64f2" path="res://scripts/SplashText.gd" id="4_83tmo"]
-[ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="5_mdgns"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4y2td"]
-atlas = ExtResource("1_7l4mt")
-region = Rect2(528, 272, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_avtsd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4y2td")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb0w6"]
 atlas = ExtResource("1_7l4mt")
@@ -30,6 +13,21 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nb0w6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y2td"]
+atlas = ExtResource("1_7l4mt")
+region = Rect2(528, 272, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_avtsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y2td")
 }],
 "loop": true,
 "name": &"default",
@@ -49,22 +47,19 @@ absorbent = true
 size = Vector2(2.5, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecu65"]
-size = Vector2(3, 9)
-
-[sub_resource type="Theme" id="Theme_ecu65"]
-default_font = ExtResource("5_mdgns")
+size = Vector2(2.4999998, 6.5)
 
 [node name="Hoop" type="Node2D" unique_id=901889454]
 script = ExtResource("1_4y2td")
-
-[node name="RimSprite" type="AnimatedSprite2D" parent="." unique_id=1827517587]
-sprite_frames = SubResource("SpriteFrames_avtsd")
 
 [node name="NetSprite" type="AnimatedSprite2D" parent="." unique_id=2127041856]
 z_index = 4
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_4y2td")
 offset = Vector2(0, 4)
+
+[node name="RimSprite" type="AnimatedSprite2D" parent="." unique_id=1827517587]
+sprite_frames = SubResource("SpriteFrames_avtsd")
 
 [node name="ScoreZone" type="Area2D" parent="." unique_id=41290585]
 position = Vector2(0, -6)
@@ -79,33 +74,14 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_mdgns")
 
 [node name="Rim" type="StaticBody2D" parent="." unique_id=619006255]
-visible = false
 physics_material_override = SubResource("PhysicsMaterial_avtsd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rim" unique_id=1088019438]
-position = Vector2(-6, -5.75)
+position = Vector2(-8, -5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_mdgns")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Rim" unique_id=995810597]
-position = Vector2(8, -5.5)
+position = Vector2(8, -5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_ecu65")
-
-[node name="Text" type="CanvasLayer" parent="." unique_id=345322298]
-visible = false
-script = ExtResource("4_83tmo")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Text" unique_id=1259816072]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_ecu65")
-bbcode_enabled = true
-text = "[rainbow][wave][font_size=7][b]splash"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1

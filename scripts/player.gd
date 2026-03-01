@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+@onready var mana_counter: Label = $"../UI Block/ManaCounter"
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var mana_counter: Label = $"../UI/ManaCounter"
 @onready var hoop: Node2D = $"../Hoop"
+
 
 @export var ball_scene: PackedScene
 @export var grid: Node2D
@@ -88,7 +89,7 @@ func throw_ball() -> void:
 		return
 	var ball: Ball = ball_scene.instantiate()
 	hoop.get_parent().add_child(ball)
-	ball.global_position = global_position + Vector2(0.0,5.0)
+	ball.global_position = global_position + Vector2(0.0,-10.0)
 	active_ball = ball
 	ball.tree_exited.connect(func():
 		active_ball = null

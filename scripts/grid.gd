@@ -58,7 +58,7 @@ func is_valid_cell(grid_x: int, grid_y: int) -> bool:
 
 func get_cell_at_position(world_pos: Vector2) -> Vector2i:
 	"""Retorna a coordenada do grid baseada em uma posição mundial"""
-	var local_pos = world_pos - global_position
+	var _local_pos = world_pos - global_position
 	
 	for y in range(grid_rows):
 		for x in range(grid_columns):
