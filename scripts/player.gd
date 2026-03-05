@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@onready var mana_counter: Label = $"../UI Block/ManaCounter"
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hoop: Node2D = $"../Hoop"
+@onready var progress_bar: TextureProgressBar = $"../UI Block/ManaBar/TextureProgressBar"
 
 
 @export var ball_scene: PackedScene
@@ -30,9 +30,7 @@ func _ready():
 	GameEvents.run_pressed.connect(_on_run_pressed)
 
 func _physics_process(_delta: float) -> void:
-	mana_counter.text = str(max_mana)
-	if max_mana == 0:
-		max_mana = 5
+	progress_bar.value = max_mana
 	if is_doing_action or is_moving_grid:
 		velocity = Vector2.ZERO
 		move_and_slide()

@@ -12,10 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://3pl652qdm76q" path="res://entites/hoop.tscn" id="10_oa3mv"]
 [ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="11_i88jj"]
 [ext_resource type="PackedScene" uid="uid://mg3mp4681aqn" path="res://entites/block.tscn" id="12_7hpfr"]
+[ext_resource type="Texture2D" uid="uid://3k50ueyjqnkr" path="res://resource/Health&Stamina/Silver/color-mana-bar.png" id="12_mxqfc"]
 [ext_resource type="Texture2D" uid="uid://bn1v5kbhcben4" path="res://resource/Decor/temp-block.png" id="13_08drj"]
 [ext_resource type="Texture2D" uid="uid://ct70rmkw2evkd" path="res://resource/Decor/temp-block-green.png" id="14_ewrjo"]
 [ext_resource type="Texture2D" uid="uid://dumpsf4mh6id2" path="res://resource/Decor/temp-block-red.png" id="15_rrr0r"]
 [ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="16_8q35r"]
+[ext_resource type="Texture2D" uid="uid://bj4jx08aj0td5" path="res://resource/Health&Stamina/Silver/border-mana-bar.png" id="16_wcrji"]
 [ext_resource type="Script" uid="uid://34tuwvhhl3it" path="res://scripts/next_level_ui.gd" id="17_0i0qh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqdkv"]
@@ -4790,12 +4792,6 @@ texture = ExtResource("8_jcajy")
 [sub_resource type="TileSet" id="TileSet_60ko4"]
 sources/0 = SubResource("TileSetAtlasSource_k3m74")
 
-[sub_resource type="LabelSettings" id="LabelSettings_dtha5"]
-font = ExtResource("11_i88jj")
-font_size = 14
-shadow_color = Color(0.28235295, 0.2509804, 0.30588236, 1)
-shadow_offset = Vector2(0.29, 0.265)
-
 [sub_resource type="Theme" id="Theme_rliih"]
 default_font = ExtResource("11_i88jj")
 default_font_size = 5
@@ -4845,14 +4841,6 @@ position = Vector2(329.19, 105)
 
 [node name="UI Block" type="CanvasLayer" parent="." unique_id=920640721]
 
-[node name="ManaCounter" type="Label" parent="UI Block" unique_id=261991760]
-offset_left = 25.0
-offset_top = 129.0
-offset_right = 31.0
-offset_bottom = 142.0
-text = "0"
-label_settings = SubResource("LabelSettings_dtha5")
-
 [node name="Block" parent="UI Block" unique_id=2138045806 instance=ExtResource("12_7hpfr")]
 position = Vector2(242, 165)
 block_type = "MOVE →"
@@ -4887,6 +4875,27 @@ block_color = ExtResource("15_rrr0r")
 
 [node name="drop_zone" parent="UI Block" unique_id=1435784591 instance=ExtResource("16_8q35r")]
 position = Vector2(30, 150)
+
+[node name="ManaBar" type="Control" parent="UI Block" unique_id=99441818]
+layout_mode = 3
+anchor_left = 0.10300001
+anchor_top = 0.61200005
+anchor_right = 0.10300001
+anchor_bottom = 0.61200005
+offset_left = 47.1
+offset_top = 56.59999
+offset_right = 95.09999
+offset_bottom = 69.59999
+pivot_offset = Vector2(23, 7)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI Block/ManaBar" unique_id=579830225]
+layout_mode = 0
+offset_right = 43.0
+offset_bottom = 7.0
+max_value = 7.0
+texture_over = ExtResource("16_wcrji")
+texture_progress = ExtResource("12_mxqfc")
+texture_progress_offset = Vector2(2, 1)
 
 [node name="NextLevelUI" type="Control" parent="." unique_id=1819052552]
 layout_mode = 3

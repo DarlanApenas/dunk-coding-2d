@@ -1,26 +1,26 @@
 [gd_scene format=4 uid="uid://d2583tq7cmo45"]
 
-[ext_resource type="PackedScene" uid="uid://637nrx2x0kma" path="res://entites/player.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://dngab1fyjo2qb" path="res://scripts/player.gd" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://dupmsuismik8r" path="res://resource/Court/Court.png" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://cjgueytl2n1cj" path="res://entites/ball.tscn" id="3_u5sy4"]
-[ext_resource type="Shader" uid="uid://djab5q88y8agv" path="res://shaders/grassy_wind.gdshader" id="4_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://hwuoxbp8d2he" path="res://resource/Decor/Grass.png" id="4_gee14"]
-[ext_resource type="PackedScene" uid="uid://3pl652qdm76q" path="res://entites/hoop.tscn" id="5_iywne"]
-[ext_resource type="Texture2D" uid="uid://c03pwasi0tf1q" path="res://resource/Decor/Decor.png" id="5_p57ef"]
-[ext_resource type="Script" uid="uid://c47i7tmfpklxi" path="res://scripts/grid.gd" id="9_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://iql84u24fhne" path="res://resource/Decor/cell_grid.png" id="9_vtaks"]
-[ext_resource type="PackedScene" uid="uid://mg3mp4681aqn" path="res://entites/block.tscn" id="11_kvpfn"]
-[ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="11_kvuet"]
-[ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="12_dinhu"]
-[ext_resource type="Texture2D" uid="uid://bn1v5kbhcben4" path="res://resource/Decor/temp-block.png" id="13_ca42v"]
-[ext_resource type="Texture2D" uid="uid://ct70rmkw2evkd" path="res://resource/Decor/temp-block-green.png" id="13_ir15t"]
-[ext_resource type="Texture2D" uid="uid://dumpsf4mh6id2" path="res://resource/Decor/temp-block-red.png" id="14_ca42v"]
-[ext_resource type="Script" uid="uid://34tuwvhhl3it" path="res://scripts/next_level_ui.gd" id="17_rysoc"]
-[ext_resource type="PackedScene" uid="uid://dvytg6db6hyw0" path="res://scenes/court_2.tscn" id="18_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://hwuoxbp8d2he" path="res://resource/Decor/Grass.png" id="1_2bs5l"]
+[ext_resource type="Shader" uid="uid://djab5q88y8agv" path="res://shaders/grassy_wind.gdshader" id="2_77dti"]
+[ext_resource type="Texture2D" uid="uid://dupmsuismik8r" path="res://resource/Court/Court.png" id="3_ecec7"]
+[ext_resource type="Texture2D" uid="uid://c03pwasi0tf1q" path="res://resource/Decor/Decor.png" id="4_rx52s"]
+[ext_resource type="Script" uid="uid://c47i7tmfpklxi" path="res://scripts/grid.gd" id="5_kk4ug"]
+[ext_resource type="Texture2D" uid="uid://iql84u24fhne" path="res://resource/Decor/cell_grid.png" id="6_mp42f"]
+[ext_resource type="PackedScene" uid="uid://637nrx2x0kma" path="res://entites/player.tscn" id="7_fg8x2"]
+[ext_resource type="Script" uid="uid://dngab1fyjo2qb" path="res://scripts/player.gd" id="8_7qbhm"]
+[ext_resource type="PackedScene" uid="uid://cjgueytl2n1cj" path="res://entites/ball.tscn" id="9_ur5g0"]
+[ext_resource type="PackedScene" uid="uid://3pl652qdm76q" path="res://entites/hoop.tscn" id="10_funxa"]
+[ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="11_ynvgm"]
+[ext_resource type="PackedScene" uid="uid://mg3mp4681aqn" path="res://entites/block.tscn" id="12_bhuel"]
+[ext_resource type="Texture2D" uid="uid://3k50ueyjqnkr" path="res://resource/Health&Stamina/Silver/color-mana-bar.png" id="13_rx52s"]
+[ext_resource type="Texture2D" uid="uid://bn1v5kbhcben4" path="res://resource/Decor/temp-block.png" id="13_wafxt"]
+[ext_resource type="Texture2D" uid="uid://ct70rmkw2evkd" path="res://resource/Decor/temp-block-green.png" id="14_gybtd"]
+[ext_resource type="Texture2D" uid="uid://bj4jx08aj0td5" path="res://resource/Health&Stamina/Silver/border-mana-bar.png" id="16_ecec7"]
+[ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="16_yj3rx"]
+[ext_resource type="Script" uid="uid://34tuwvhhl3it" path="res://scripts/next_level_ui.gd" id="17_ybo75"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rysoc"]
-texture = ExtResource("4_gee14")
+texture = ExtResource("1_2bs5l")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -29,7 +29,7 @@ texture = ExtResource("4_gee14")
 sources/0 = SubResource("TileSetAtlasSource_rysoc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
-shader = ExtResource("4_0tnpc")
+shader = ExtResource("2_77dti")
 shader_parameter/wind_dir_angle = -0.315
 shader_parameter/wind_speed = 30.0
 shader_parameter/use_wind_gusts = false
@@ -41,7 +41,7 @@ shader_parameter/threshold = 0.33
 shader_parameter/opacity = 0.1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ssvqc"]
-texture = ExtResource("3_lnu2h")
+texture = ExtResource("3_ecec7")
 46:0/0 = 0
 47:0/0 = 0
 48:0/0 = 0
@@ -2610,7 +2610,7 @@ texture = ExtResource("3_lnu2h")
 58:0/0/z_index = 2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_264po"]
-texture = ExtResource("4_gee14")
+texture = ExtResource("1_2bs5l")
 0:0/0 = 0
 0:0/0/z_index = -1
 1:0/0 = 0
@@ -2623,7 +2623,7 @@ sources/0 = SubResource("TileSetAtlasSource_ssvqc")
 sources/1 = SubResource("TileSetAtlasSource_264po")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kice"]
-texture = ExtResource("5_p57ef")
+texture = ExtResource("4_rx52s")
 7:4/0 = 0
 8:4/0 = 0
 9:4/0 = 0
@@ -2669,7 +2669,7 @@ texture = ExtResource("5_p57ef")
 sources/0 = SubResource("TileSetAtlasSource_1kice")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5newe"]
-texture = ExtResource("3_lnu2h")
+texture = ExtResource("3_ecec7")
 46:0/0 = 0
 47:0/0 = 0
 48:0/0 = 0
@@ -4791,14 +4791,8 @@ texture = ExtResource("3_lnu2h")
 [sub_resource type="TileSet" id="TileSet_trtic"]
 sources/0 = SubResource("TileSetAtlasSource_5newe")
 
-[sub_resource type="LabelSettings" id="LabelSettings_trtic"]
-font = ExtResource("11_kvuet")
-font_size = 14
-shadow_color = Color(0.28235295, 0.2509804, 0.30588236, 1)
-shadow_offset = Vector2(0.29, 0.265)
-
 [sub_resource type="Theme" id="Theme_rysoc"]
-default_font = ExtResource("11_kvuet")
+default_font = ExtResource("11_ynvgm")
 default_font_size = 5
 
 [node name="Game" type="Node2D" unique_id=2046420747]
@@ -4830,69 +4824,64 @@ tile_set = SubResource("TileSet_trtic")
 
 [node name="Grid" type="Node2D" parent="." unique_id=1357194192]
 position = Vector2(140, 100)
-script = ExtResource("9_0tnpc")
-cell_texture = ExtResource("9_vtaks")
+script = ExtResource("5_kk4ug")
+cell_texture = ExtResource("6_mp42f")
 draw_outline = false
 show_coordinates = false
 
-[node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("1_uwrxv")]
+[node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("7_fg8x2")]
 position = Vector2(210, 150)
-script = ExtResource("2_yqjtg")
-ball_scene = ExtResource("3_u5sy4")
+script = ExtResource("8_7qbhm")
+ball_scene = ExtResource("9_ur5g0")
 grid = NodePath("../Grid")
 sprite_offset = Vector2(-2, 16)
 max_mana = 3
 
-[node name="Hoop" parent="." unique_id=667016737 instance=ExtResource("5_iywne")]
+[node name="Hoop" parent="." unique_id=667016737 instance=ExtResource("10_funxa")]
 position = Vector2(329.19, 105)
 
 [node name="UI Block" type="CanvasLayer" parent="." unique_id=1740699742]
 
-[node name="ManaCounter" type="Label" parent="UI Block" unique_id=657555005]
-offset_left = 25.0
-offset_top = 129.0
-offset_right = 31.0
-offset_bottom = 142.0
-text = "0"
-label_settings = SubResource("LabelSettings_trtic")
-
-[node name="Block" parent="UI Block" unique_id=2138045806 instance=ExtResource("11_kvpfn")]
-position = Vector2(242, 165)
-block_type = "MOVE →"
-block_color = ExtResource("13_ca42v")
-
-[node name="Block2" parent="UI Block" unique_id=1094495301 instance=ExtResource("11_kvpfn")]
-position = Vector2(242, 178)
-block_type = "MOVE ←"
-block_color = ExtResource("13_ca42v")
-
-[node name="Block3" parent="UI Block" unique_id=1101247135 instance=ExtResource("11_kvpfn")]
-visible = false
+[node name="Block" parent="UI Block" unique_id=2138045806 instance=ExtResource("12_bhuel")]
 position = Vector2(276, 165)
-block_type = "MOVE ↑"
-block_color = ExtResource("13_ca42v")
+block_type = "MOVE →"
+block_color = ExtResource("13_wafxt")
 
-[node name="Block4" parent="UI Block" unique_id=741082972 instance=ExtResource("11_kvpfn")]
-visible = false
+[node name="Block2" parent="UI Block" unique_id=1094495301 instance=ExtResource("12_bhuel")]
 position = Vector2(276, 178)
-block_type = "MOVE ↓"
-block_color = ExtResource("13_ca42v")
+block_type = "MOVE ←"
+block_color = ExtResource("13_wafxt")
 
-[node name="Block5" parent="UI Block" unique_id=21002463 instance=ExtResource("11_kvpfn")]
-position = Vector2(242, 191)
+[node name="Block5" parent="UI Block" unique_id=21002463 instance=ExtResource("12_bhuel")]
+position = Vector2(276, 191)
 block_type = "SHOOT!"
 block_cost = 2
-block_color = ExtResource("13_ir15t")
+block_color = ExtResource("14_gybtd")
 
-[node name="Block6" parent="UI Block" unique_id=1785349164 instance=ExtResource("11_kvpfn")]
-visible = false
-position = Vector2(276, 191)
-block_type = "DRIBBLE"
-block_cost = 3
-block_color = ExtResource("14_ca42v")
-
-[node name="drop_zone" parent="UI Block" unique_id=1787792880 instance=ExtResource("12_dinhu")]
+[node name="drop_zone" parent="UI Block" unique_id=1787792880 instance=ExtResource("16_yj3rx")]
 position = Vector2(30, 150)
+
+[node name="ManaBar" type="Control" parent="UI Block" unique_id=841233033]
+layout_mode = 3
+anchor_left = 0.10300001
+anchor_top = 0.61200005
+anchor_right = 0.10300001
+anchor_bottom = 0.61200005
+offset_left = 47.1
+offset_top = 57.59999
+offset_right = 95.1
+offset_bottom = 70.59999
+pivot_offset = Vector2(23, 7)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI Block/ManaBar" unique_id=980325355]
+layout_mode = 0
+offset_right = 43.0
+offset_bottom = 7.0
+max_value = 7.0
+value = 7.0
+texture_over = ExtResource("16_ecec7")
+texture_progress = ExtResource("13_rx52s")
+texture_progress_offset = Vector2(2, 1)
 
 [node name="NextLevelUI" type="Control" parent="." unique_id=273973870]
 layout_mode = 3
@@ -4909,8 +4898,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 size_flags_horizontal = 4
-script = ExtResource("17_rysoc")
-next_level = ExtResource("18_ssvqc")
+script = ExtResource("17_ybo75")
 
 [node name="Panel" type="Panel" parent="NextLevelUI" unique_id=1612112348]
 layout_mode = 1

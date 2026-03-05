@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7x5isn2es2b2"
-path="res://.godot/imported/stamina-full.png-7ecd10022920d28f81c09dd5fbaa8ed8.ctex"
+uid="uid://3k50ueyjqnkr"
+path="res://.godot/imported/color-mana-bar.png-bc2e967db603a05acb4de3b990d2558b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resource/Health&Stamina/Silver/stamina-full.png"
-dest_files=["res://.godot/imported/stamina-full.png-7ecd10022920d28f81c09dd5fbaa8ed8.ctex"]
+source_file="res://resource/Health&Stamina/Silver/color-mana-bar.png"
+dest_files=["res://.godot/imported/color-mana-bar.png-bc2e967db603a05acb4de3b990d2558b.ctex"]
 
 [params]
 
