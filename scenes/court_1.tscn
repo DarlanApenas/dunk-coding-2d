@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c03pwasi0tf1q" path="res://resource/Decor/Decor.png" id="4_rx52s"]
 [ext_resource type="Script" uid="uid://c47i7tmfpklxi" path="res://scripts/grid.gd" id="5_kk4ug"]
 [ext_resource type="Texture2D" uid="uid://iql84u24fhne" path="res://resource/Decor/cell_grid.png" id="6_mp42f"]
+[ext_resource type="PackedScene" uid="uid://yfdx7c6op337" path="res://entites/opponent.tscn" id="7_ecec7"]
 [ext_resource type="PackedScene" uid="uid://637nrx2x0kma" path="res://entites/player.tscn" id="7_fg8x2"]
 [ext_resource type="Script" uid="uid://dngab1fyjo2qb" path="res://scripts/player.gd" id="8_7qbhm"]
 [ext_resource type="PackedScene" uid="uid://cjgueytl2n1cj" path="res://entites/ball.tscn" id="9_ur5g0"]
@@ -4827,7 +4828,8 @@ position = Vector2(140, 100)
 script = ExtResource("5_kk4ug")
 cell_texture = ExtResource("6_mp42f")
 draw_outline = false
-show_coordinates = false
+has_opponent = true
+opponent_scene = ExtResource("7_ecec7")
 
 [node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("7_fg8x2")]
 position = Vector2(210, 150)

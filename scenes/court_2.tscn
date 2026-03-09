@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="16_8q35r"]
 [ext_resource type="Texture2D" uid="uid://bj4jx08aj0td5" path="res://resource/Health&Stamina/Silver/border-mana-bar.png" id="16_wcrji"]
 [ext_resource type="Script" uid="uid://34tuwvhhl3it" path="res://scripts/next_level_ui.gd" id="17_0i0qh"]
+[ext_resource type="PackedScene" uid="uid://yfdx7c6op337" path="res://entites/opponent.tscn" id="20_hcij8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqdkv"]
 texture = ExtResource("6_5gclm")
@@ -4828,6 +4829,8 @@ script = ExtResource("1_ii6ld")
 cell_texture = ExtResource("6_ii6ld")
 draw_outline = false
 show_coordinates = false
+has_opponent = true
+opponent_scene = ExtResource("20_hcij8")
 
 [node name="Player" parent="." unique_id=1836912939 node_paths=PackedStringArray("grid") instance=ExtResource("3_wcrji")]
 position = Vector2(210, 150)
