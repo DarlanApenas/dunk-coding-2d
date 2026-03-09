@@ -25,7 +25,6 @@ func spawn_random() -> void:
 			var forbidden = forbidden_cells.has(cell)
 			if valid and not forbidden:
 				free_cells.append(cell)
-	print("células livres: ", free_cells)
 	
 	if free_cells.is_empty():
 		push_warning("Opponent: nenhuma célula disponível!")

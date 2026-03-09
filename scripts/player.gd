@@ -46,8 +46,6 @@ func move_grid(dx: int, dy: int):
 	if not grid.is_valid_cell(new_x, new_y):
 		execute_next_command()
 		return
-	
-	# Atualiza flip baseado na direção
 	if dx > 0:
 		anim.flip_h = false
 	elif dx < 0:
@@ -94,7 +92,7 @@ func throw_ball() -> void:
 	)
 	ball.throw(hoop.global_position)
 
-func play_dribble() -> void:
+func dribble() -> void:
 	if is_doing_action:
 		return
 	is_doing_action = true
@@ -102,7 +100,6 @@ func play_dribble() -> void:
 	anim.play("fast_cross")
 	if not anim.animation_finished.is_connected(_on_action_finished):
 		anim.animation_finished.connect(_on_action_finished)
-	execute_next_command()
 
 func shoot() -> void:
 	if is_doing_action or active_ball != null:
@@ -120,7 +117,7 @@ func shoot() -> void:
 func _on_shoot_frame() -> void:
 	if not is_shooting:
 		return
-	# frame 5 da animação
+	# Frame 5 da animação
 	if anim.frame == 4 and not ball_released:
 		ball_released = true
 		throw_ball()
@@ -139,31 +136,46 @@ func _on_action_finished() -> void:
 	is_doing_action = false
 	anim.animation_finished.disconnect(_on_action_finished)
 	anim.play("idle_bouncing")
+	execute_next_command()
 	
 func _on_run_pressed(stack: Array):
-	command_queue.clear()
-	var total_cost = 0
+	var total_cost := 0
 	for entry in stack:
-		command_queue.append(entry["type"])
 		total_cost += entry["cost"]
 	if total_cost > max_mana:
+		#TODO: Mudar para aviso na tela
+		push_warning("Mana insuficiente! Custo: %d | Mana: %d" % [total_cost, max_mana])
 		return
-	else:
-		max_mana -= total_cost
-		execute_next_command()
+	
+	command_queue.clear()
+	for entry in stack:
+		command_queue.append(entry)
+	execute_next_command()
 
 func execute_next_command():
 	if command_queue.is_empty():
 		is_executing = false
 		return
 	is_executing = true
-	var command = command_queue.pop_back()
-	match command:
-		"MOVE ↑":    move_grid(0, -1)
-		"MOVE ↓":   move_grid(0, 1)
-		"MOVE ←": move_grid(-1, 0)
-		"MOVE →":  move_grid(1, 0)
-		"SHOOT!":  shoot()
-		"DRIBBLE": play_dribble()
+	var entry = command_queue.pop_back()
+	match entry["type"]:
+		"MOVE ↑":
+			max_mana -= entry["cost"]
+			move_grid(0, -1)
+		"MOVE ↓":
+			max_mana -= entry["cost"]
+			move_grid(0, 1)
+		"MOVE ←":
+			max_mana -= entry["cost"]
+			move_grid(-1, 0)
+		"MOVE →":
+			max_mana -= entry["cost"]
+			move_grid(1, 0)
+		"SHOOT!":
+			max_mana -= entry["cost"]
+			shoot()
+		"DRIBBLE":
+			max_mana -= entry["cost"]
+			dribble()
 		_:
 			execute_next_command()

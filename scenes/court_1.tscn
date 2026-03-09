@@ -4796,7 +4796,7 @@ sources/0 = SubResource("TileSetAtlasSource_5newe")
 default_font = ExtResource("11_ynvgm")
 default_font_size = 5
 
-[node name="Game" type="Node2D" unique_id=2046420747]
+[node name="Court1" type="Node2D" unique_id=2046420747]
 metadata/_edit_horizontal_guides_ = [170.0, 221.0]
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1906724886]
@@ -4828,7 +4828,7 @@ position = Vector2(140, 100)
 script = ExtResource("5_kk4ug")
 cell_texture = ExtResource("6_mp42f")
 draw_outline = false
-has_opponent = true
+show_coordinates = false
 opponent_scene = ExtResource("7_ecec7")
 
 [node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("7_fg8x2")]
@@ -4854,7 +4854,7 @@ position = Vector2(276, 178)
 block_type = "MOVE ←"
 block_color = ExtResource("13_wafxt")
 
-[node name="Block5" parent="UI Block" unique_id=21002463 instance=ExtResource("12_bhuel")]
+[node name="Block3" parent="UI Block" unique_id=21002463 instance=ExtResource("12_bhuel")]
 position = Vector2(276, 191)
 block_type = "SHOOT!"
 block_cost = 2
@@ -4865,14 +4865,14 @@ position = Vector2(30, 150)
 
 [node name="ManaBar" type="Control" parent="UI Block" unique_id=841233033]
 layout_mode = 3
-anchor_left = 0.10300001
-anchor_top = 0.61200005
-anchor_right = 0.10300001
-anchor_bottom = 0.61200005
-offset_left = 47.1
-offset_top = 57.59999
-offset_right = 95.1
-offset_bottom = 70.59999
+anchor_left = 0.26000002
+anchor_top = 0.90000004
+anchor_right = 0.26000002
+anchor_bottom = 0.90000004
+offset_left = -69.00001
+offset_top = -173.0
+offset_right = -21.000008
+offset_bottom = -160.0
 pivot_offset = Vector2(23, 7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI Block/ManaBar" unique_id=980325355]

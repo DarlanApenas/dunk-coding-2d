@@ -74,9 +74,6 @@ func spawn_opponent() -> void:
 	var opponent = opponent_scene.instantiate()
 	opponent.grid = self
 	get_tree().current_scene.add_child(opponent)
-	print("Opponent adicionado na célula: ", opponent.current_grid_pos)
-	print("Opponent posição mundial: ", opponent.global_position)
-	
 
 func get_cell_at_position(world_pos: Vector2) -> Vector2i:
 	for y in range(grid_rows):
