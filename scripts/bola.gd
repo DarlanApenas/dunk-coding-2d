@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 @export_category('ARREMESSO')
 @export var gravity := 900.0
-@export var arc_height := 5.0       # arco estético — ajuste no inspetor
-@export var flight_time_scale := 50.0  # divisor da distância pro tempo de voo
+@export var arc_height := 5.0
+@export var flight_time_scale := 50.0
 
 @export_category('VARIAVEIS')
 @export var lifetime := 6.0
@@ -16,6 +16,7 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $ball
 @onready var shadow: Sprite2D = $shadow
+@onready var particles: CPUParticles2D = $Particles
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 var height: float = 0.0
@@ -31,6 +32,8 @@ func _ready() -> void:
 	add_child(timer)
 	timer.start()
 	set_meta("scored", false)
+	particles.emitting = false
+	particles.one_shot = true
 
 func _physics_process(delta: float) -> void:
 	vertical_velocity -= gravity * delta
@@ -74,9 +77,8 @@ func throw(target_global_pos: Vector2) -> void:
 	vertical_velocity = (arc_height + 0.5 * gravity * ft * ft) / ft
 
 func throw_blocked(opponent_pos: Vector2) -> void:
-	# Vai até o oponente em arco pequeno
 	var displacement := opponent_pos - global_position
-	var ft := 0.2  # voo rápido até o oponente
+	var ft := 0.2
 	horizontal_velocity = displacement / ft
 	height = 0.0
 	vertical_velocity = (arc_height * 0.5 + 0.5 * gravity * ft * ft) / ft
@@ -107,12 +109,27 @@ func squash_and_stretch() -> void:
 
 func _on_lifetime_end() -> void:
 	queue_free()
+	var fx := particles
+	remove_child(fx)
+	get_tree().current_scene.add_child(fx)
+	fx.global_position = get_visual_position()
+	fx.emitting = true
+	
+	# Remove as partículas após o tempo de vida delas
+	await get_tree().create_timer(fx.lifetime).timeout
+	fx.queue_free()
 
 func is_falling() -> bool:
 	return vertical_velocity < 0
 
 func is_on_ground() -> bool:
 	return height <= ground_offset
+	
+func get_height() -> float:
+	return height
+	
+func get_visual_position() -> Vector2:
+	return global_position + Vector2(0, -height)
 
 func on_scored() -> void:
 	set_meta("scored", true)

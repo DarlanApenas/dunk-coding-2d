@@ -7,6 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8gq8"]
 radius = 3.535534
 
+[sub_resource type="Gradient" id="Gradient_cef5f"]
+colors = PackedColorArray(0.9607843, 0.49019608, 0.2901961, 1, 0.68235296, 0.13725491, 0.20392157, 1)
+
 [node name="Ball" type="CharacterBody2D" unique_id=1160406378]
 script = ExtResource("1_cef5f")
 gravity = 500.0
@@ -28,3 +31,17 @@ texture = ExtResource("2_4x1jm")
 [node name="shadow" type="Sprite2D" parent="." unique_id=968923399]
 visible = false
 texture = ExtResource("3_k3mec")
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1167279681]
+emitting = false
+amount = 12
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(10, 10)
+initial_velocity_min = 80.0
+initial_velocity_max = 150.0
+scale_amount_max = 3.0
+color_initial_ramp = SubResource("Gradient_cef5f")

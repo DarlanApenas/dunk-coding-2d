@@ -10,13 +10,9 @@ extends Node2D
 	]
 @export var slot_height: float = 16.0
 @export var snap_radius: float = 15.0
-
 @onready var player: CharacterBody2D = $"../../Player"
-@onready var run_button: Button = $RunButton
 var stack: Array = []
 
-func _ready():
-	run_button.pressed.connect(_on_run_pressed)
 func try_add_block(block, insert_index: int = -1) -> bool:
 	if not block.block_type in accepted_types:
 		return false
@@ -52,8 +48,11 @@ func _reposition_all():
 	for i in stack.size():
 		var block = stack[i]["block"]
 		block.rest_point = global_position + Vector2(0, i * slot_height)
-	
-func _on_run_pressed():
+
+func _on_reset_button_pressed() -> void:
+	LevelManager.reset()
+
+func _on_run_button_pressed() -> void:
 	GameEvents.run_pressed.emit(stack.duplicate())
 	for entry in stack:
 		entry["block"].in_grid = false

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bk5t33n0c65fk" path="res://scripts/drop_zone.gd" id="1_gj6d4"]
 [ext_resource type="Texture2D" uid="uid://dnuwcjvejbte3" path="res://resource/Decor/drop_zone.png" id="2_kloor"]
 [ext_resource type="Texture2D" uid="uid://cdtlkl3ajc0tl" path="res://resource/Decor/play-button.png" id="3_w41gp"]
+[ext_resource type="Texture2D" uid="uid://de1ssw5exl704" path="res://resource/Decor/play-button-pressed.png" id="4_uwjsp"]
+[ext_resource type="Texture2D" uid="uid://dhg8405lm0vqw" path="res://resource/Decor/reset-button.png" id="5_y4uaj"]
+[ext_resource type="Texture2D" uid="uid://cguxjpvqyvok6" path="res://resource/Decor/reset-button-pressed.png" id="6_2a76c"]
 
 [node name="drop_zone" type="Node2D" unique_id=1435784591 groups=["zone"]]
 script = ExtResource("1_gj6d4")
@@ -15,11 +18,21 @@ position = Vector2(-2, -6)
 texture = ExtResource("2_kloor")
 offset = Vector2(0, 26)
 
-[node name="RunButton" type="Button" parent="." unique_id=9749966]
-offset_left = 17.0
-offset_top = 16.0
-offset_right = 57.0
-offset_bottom = 56.0
-icon = ExtResource("3_w41gp")
-flat = true
-icon_alignment = 1
+[node name="RunButton" type="TextureButton" parent="." unique_id=353381116]
+offset_left = 26.0
+offset_top = 27.0
+offset_right = 45.0
+offset_bottom = 41.0
+texture_normal = ExtResource("3_w41gp")
+texture_pressed = ExtResource("4_uwjsp")
+
+[node name="ResetButton" type="TextureButton" parent="." unique_id=1693251294]
+offset_left = 46.0
+offset_top = 27.0
+offset_right = 60.0
+offset_bottom = 41.0
+texture_normal = ExtResource("5_y4uaj")
+texture_pressed = ExtResource("6_2a76c")
+
+[connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
