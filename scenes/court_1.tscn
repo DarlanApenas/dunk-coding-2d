@@ -4837,7 +4837,7 @@ script = ExtResource("8_7qbhm")
 ball_scene = ExtResource("9_ur5g0")
 grid = NodePath("../Grid")
 sprite_offset = Vector2(-2, 16)
-max_mana = 3
+max_mana = 10
 
 [node name="Hoop" parent="." unique_id=667016737 instance=ExtResource("10_funxa")]
 position = Vector2(329.19, 105)

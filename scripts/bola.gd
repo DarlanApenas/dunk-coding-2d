@@ -46,7 +46,6 @@ func _physics_process(delta: float) -> void:
 			horizontal_velocity = Vector2.ZERO
 		horizontal_velocity *= friction
 	elif not _bounce_active and height <= 0.0:
-		# Segurança: se nunca entrou no ScoreZone, para no chão
 		height = 0.0
 		vertical_velocity = 0.0
 		horizontal_velocity = Vector2.ZERO
@@ -73,6 +72,28 @@ func throw(target_global_pos: Vector2) -> void:
 	horizontal_velocity = displacement / ft
 	height = 0.0
 	vertical_velocity = (arc_height + 0.5 * gravity * ft * ft) / ft
+
+func throw_blocked(opponent_pos: Vector2) -> void:
+	# Vai até o oponente em arco pequeno
+	var displacement := opponent_pos - global_position
+	var ft := 0.2  # voo rápido até o oponente
+	horizontal_velocity = displacement / ft
+	height = 0.0
+	vertical_velocity = (arc_height * 0.5 + 0.5 * gravity * ft * ft) / ft
+	
+	await get_tree().create_timer(ft).timeout
+	_rebound()
+
+func _rebound() -> void:
+	# Direção aleatória para trás (lado esquerdo em X negativo + Y aleatório)
+	var angle := randf_range(150.0, 210.0)  # arco de ângulos "para trás"
+	var radians := deg_to_rad(angle)
+	var direction := Vector2(cos(radians), sin(radians))
+	var rebound_force := randf_range(60.0, 120.0)
+	
+	horizontal_velocity = direction * rebound_force
+	vertical_velocity = randf_range(200.0, 350.0)
+	activate_bounce()
 
 func activate_bounce() -> void:
 	_bounce_active = true

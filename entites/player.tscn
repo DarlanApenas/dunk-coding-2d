@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://637nrx2x0kma"]
 
 [ext_resource type="Texture2D" uid="uid://dqmm35p2xruth" path="res://resource/Character/Character1_NEW.png" id="2_pl7un"]
+[ext_resource type="Script" uid="uid://b74kjl0uqhadp" path="res://entites/camera_2d.gd" id="2_sca1b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60y1q"]
 size = Vector2(20, 23)
@@ -1644,3 +1645,4 @@ position = Vector2(-1, 2)
 limit_left = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+script = ExtResource("2_sca1b")

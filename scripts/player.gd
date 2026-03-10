@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hoop: Node2D = $"../Hoop"
 @onready var progress_bar: TextureProgressBar = $"../UI Block/ManaBar/TextureProgressBar"
-
+@onready var camera: Camera2D = $Camera2D
 
 @export var ball_scene: PackedScene
 @export var grid: Node2D
@@ -23,6 +23,7 @@ var is_moving_grid := false
 var move_duration := 0.9
 
 func _ready():
+	
 	if not grid:
 		grid = get_tree().get_first_node_in_group("grid")
 	if grid:
@@ -85,12 +86,11 @@ func throw_ball() -> void:
 		return
 	var ball: Ball = ball_scene.instantiate()
 	hoop.get_parent().add_child(ball)
-	ball.global_position = global_position + Vector2(0.0,-10.0)
+	ball.global_position = global_position + Vector2(0.0, -10.0)
 	active_ball = ball
-	ball.tree_exited.connect(func():
-		active_ball = null
-	)
+	ball.tree_exited.connect(func(): active_ball = null)
 	ball.throw(hoop.global_position)
+	camera.follow_ball(ball)  # câmera foca na bola
 
 func dribble() -> void:
 	if is_doing_action:
@@ -101,9 +101,36 @@ func dribble() -> void:
 	if not anim.animation_finished.is_connected(_on_action_finished):
 		anim.animation_finished.connect(_on_action_finished)
 
+func is_shot_blocked() -> bool:
+	# frente = direita se não flipado, esquerda se flipado
+	var front_cell := current_grid_pos + (Vector2i(-1, 0) if anim.flip_h else Vector2i(1, 0))
+	var opponent = get_tree().get_first_node_in_group("opponent")
+	if opponent and opponent.current_grid_pos == front_cell:
+		return true
+	return false
+
 func shoot() -> void:
 	if is_doing_action or active_ball != null:
 		return
+	if is_shot_blocked():
+		is_doing_action = true
+		anim.play("shooting")
+		var opponent = get_tree().get_first_node_in_group("opponent")
+		opponent.block_shot()
+		
+		var ball: Ball = ball_scene.instantiate()
+		hoop.get_parent().add_child(ball)
+		ball.global_position = global_position + Vector2(0.0, -10.0)
+		active_ball = ball
+		ball.tree_exited.connect(func(): active_ball = null)
+		ball.throw_blocked(opponent.global_position)
+		
+		await anim.animation_finished
+		is_doing_action = false
+		anim.play("idle_bouncing")
+		execute_next_command()
+		return
+
 	is_doing_action = true
 	is_shooting = true
 	ball_released = false

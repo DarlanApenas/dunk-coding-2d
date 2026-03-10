@@ -3,6 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://b3m4wsja4bgvq" path="res://resource/Character/Character2_NEW.png" id="1_amo4f"]
 [ext_resource type="Script" uid="uid://d3x565im8xbyi" path="res://scripts/opponent.gd" id="1_kx8iu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx8iu"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(0, 1344, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peuyh"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(64, 1344, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjd7l"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(128, 1344, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqulf"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(192, 1344, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivccm"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(256, 1344, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7oei"]
+atlas = ExtResource("1_amo4f")
+region = Rect2(320, 1344, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lltpv"]
 atlas = ExtResource("1_amo4f")
 region = Rect2(0, 1088, 64, 64)
@@ -25,6 +49,29 @@ region = Rect2(256, 1088, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsxeh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx8iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peuyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjd7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqulf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivccm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7oei")
+}],
+"loop": false,
+"name": &"block",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lltpv")
@@ -54,8 +101,9 @@ script = ExtResource("1_kx8iu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2126340106]
 sprite_frames = SubResource("SpriteFrames_nsxeh")
-animation = &"idle"
-frame_progress = 0.079279415
+animation = &"block"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679410304]
 position = Vector2(-0.5, 7)
