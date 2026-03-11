@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bvy74egptcoup" path="res://scripts/dragndrop.gd" id="1_lgte1"]
 [ext_resource type="Script" uid="uid://dwv55jo1na815" path="res://scripts/block_attributes.gd" id="2_4igxf"]
 [ext_resource type="FontFile" uid="uid://7t7nuuuisoh" path="res://font/m6x11.ttf" id="4_dbusf"]
-[ext_resource type="Texture2D" uid="uid://dp36g6vkuq766" path="res://resource/Decor/mana-icon.png" id="4_p6iiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1i0"]
 size = Vector2(30, 11)
@@ -37,11 +36,6 @@ texture = ExtResource("1_4igxf")
 [node name="Mana" type="Marker2D" parent="Block" unique_id=1340905047]
 position = Vector2(14, -4)
 
-[node name="Sprite2D" type="Sprite2D" parent="Block/Mana" unique_id=148428145]
-visible = false
-scale = Vector2(0.48, 0.48)
-texture = ExtResource("4_p6iiu")
-
 [node name="Label" type="Label" parent="Block/Mana" unique_id=2103404232]
 offset_left = -2.0
 offset_top = -2.0
@@ -51,11 +45,12 @@ pivot_offset = Vector2(0, 5)
 text = "3"
 label_settings = SubResource("LabelSettings_jymka")
 
-[node name="Label" type="Label" parent="Block" unique_id=104037561]
+[node name="BlockLabel" type="Label" parent="Block" unique_id=104037561]
 offset_left = -19.0
 offset_top = -11.0
 offset_right = 21.0
 offset_bottom = 12.0
+text = "BLOCK_NAME"
 label_settings = SubResource("LabelSettings_dbusf")
 horizontal_alignment = 1
 vertical_alignment = 1

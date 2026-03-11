@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @export var ball_scene: PackedScene
 @export var grid: Node2D
-@export var sprite_offset: Vector2 = Vector2(0, 12)  # Offset para pés no chão
+@export var sprite_offset: Vector2 = Vector2(0, 12)
 @export var max_mana: int = 5
 
 const SPEED := 100.0
@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		return
 
-func move_grid(dx: int, dy: int):
+func move_grid(dx: int, dy: int, cost: int = 1):
 	if not grid or is_moving_grid:
 		return
 	
@@ -47,6 +47,9 @@ func move_grid(dx: int, dy: int):
 	if not grid.is_valid_cell(new_x, new_y):
 		execute_next_command()
 		return
+	
+	max_mana -= cost
+	
 	if dx > 0:
 		anim.flip_h = false
 	elif dx < 0:
@@ -90,7 +93,7 @@ func throw_ball() -> void:
 	active_ball = ball
 	ball.tree_exited.connect(func(): active_ball = null)
 	ball.throw(hoop.global_position)
-	camera.follow_ball(ball)  # câmera foca na bola
+	camera.follow_ball(ball)
 
 func dribble() -> void:
 	if is_doing_action:
@@ -102,7 +105,6 @@ func dribble() -> void:
 		anim.animation_finished.connect(_on_action_finished)
 
 func is_shot_blocked() -> bool:
-	# frente = direita se não flipado, esquerda se flipado
 	var front_cell := current_grid_pos + (Vector2i(-1, 0) if anim.flip_h else Vector2i(1, 0))
 	var opponent = get_tree().get_first_node_in_group("opponent")
 	if opponent and opponent.current_grid_pos == front_cell:
@@ -187,17 +189,13 @@ func execute_next_command():
 	var entry = command_queue.pop_back()
 	match entry["type"]:
 		"MOVE ↑":
-			max_mana -= entry["cost"]
-			move_grid(0, -1)
+			move_grid(0, -1, entry["cost"])
 		"MOVE ↓":
-			max_mana -= entry["cost"]
-			move_grid(0, 1)
+			move_grid(0, 1, entry["cost"])
 		"MOVE ←":
-			max_mana -= entry["cost"]
-			move_grid(-1, 0)
+			move_grid(-1, 0, entry["cost"])
 		"MOVE →":
-			max_mana -= entry["cost"]
-			move_grid(1, 0)
+			move_grid(1, 0, entry["cost"])
 		"SHOOT!":
 			max_mana -= entry["cost"]
 			shoot()

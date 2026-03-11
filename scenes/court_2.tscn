@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://dumpsf4mh6id2" path="res://resource/Decor/temp-block-red.png" id="15_rrr0r"]
 [ext_resource type="PackedScene" uid="uid://cr0s4sh3reyxf" path="res://entites/drop_zone.tscn" id="16_8q35r"]
 [ext_resource type="Texture2D" uid="uid://bj4jx08aj0td5" path="res://resource/Health&Stamina/Silver/border-mana-bar.png" id="16_wcrji"]
-[ext_resource type="Script" uid="uid://valo6y7xomwb" path="res://scenes/next_ui.gd" id="19_mxqfc"]
 [ext_resource type="PackedScene" uid="uid://yfdx7c6op337" path="res://entites/opponent.tscn" id="20_hcij8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqdkv"]
@@ -4793,7 +4792,31 @@ texture = ExtResource("8_jcajy")
 [sub_resource type="TileSet" id="TileSet_60ko4"]
 sources/0 = SubResource("TileSetAtlasSource_k3m74")
 
-[sub_resource type="Theme" id="Theme_rliih"]
+[sub_resource type="GDScript" id="GDScript_wcrji"]
+script/source = "extends CanvasLayer
+
+@onready var hoop: Node2D = $\"../Hoop\"
+@onready var panel: Panel = $Panel
+
+func _ready() -> void:
+	visible = false
+	hoop.scored.connect(_on_scored)
+
+func _on_scored() -> void:
+	visible = true
+	# CanvasLayer não tem scale, anima o Panel filho no lugar
+	panel.scale = Vector2.ZERO
+	panel.pivot_offset = panel.size / 2.0
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(panel, \"scale\", Vector2.ONE, 0.35)
+
+func _on_next_button_pressed() -> void:
+	LevelManager.next_level()
+"
+
+[sub_resource type="Theme" id="Theme_mxqfc"]
 default_font = ExtResource("11_i88jj")
 default_font_size = 5
 
@@ -4838,7 +4861,6 @@ script = ExtResource("4_mxqfc")
 ball_scene = ExtResource("5_hcij8")
 grid = NodePath("../Grid")
 sprite_offset = Vector2(-2, 16)
-max_mana = 10
 
 [node name="Hoop" parent="." unique_id=901889454 instance=ExtResource("10_oa3mv")]
 position = Vector2(329.19, 105)
@@ -4886,9 +4908,9 @@ anchor_left = 0.26000002
 anchor_top = 0.90000004
 anchor_right = 0.26000002
 anchor_bottom = 0.90000004
-offset_left = -69.00001
+offset_left = -70.00001
 offset_top = -173.0
-offset_right = -21.000008
+offset_right = -22.000008
 offset_bottom = -160.0
 pivot_offset = Vector2(23, 7)
 
@@ -4902,18 +4924,26 @@ texture_over = ExtResource("16_wcrji")
 texture_progress = ExtResource("12_mxqfc")
 texture_progress_offset = Vector2(2, 1)
 
-[node name="NextLevelUI" type="CanvasLayer" parent="." unique_id=1050960328]
-script = ExtResource("19_mxqfc")
+[node name="NextLevelUI" type="CanvasLayer" parent="." unique_id=65191487]
+script = SubResource("GDScript_wcrji")
 
-[node name="Panel" type="Panel" parent="NextLevelUI" unique_id=157523100]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Panel" type="Panel" parent="NextLevelUI" unique_id=1373864941]
+clip_contents = true
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -93.0
+offset_right = -50.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(20, 24)
+pivot_offset = Vector2(16, 15)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NextLevelUI/Panel" unique_id=2103449803]
+[node name="VBoxContainer" type="VBoxContainer" parent="NextLevelUI/Panel" unique_id=1112370544]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4923,9 +4953,9 @@ grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 alignment = 1
 
-[node name="Next" type="Button" parent="NextLevelUI/Panel/VBoxContainer" unique_id=1718325323]
+[node name="Next" type="Button" parent="NextLevelUI/Panel/VBoxContainer" unique_id=475190101]
 layout_mode = 2
-theme = SubResource("Theme_rliih")
+theme = SubResource("Theme_mxqfc")
 text = "NEXT COURT"
 
 [connection signal="pressed" from="NextLevelUI/Panel/VBoxContainer/Next" to="NextLevelUI" method="_on_next_button_pressed"]

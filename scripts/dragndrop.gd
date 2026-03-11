@@ -3,7 +3,8 @@ extends Node2D
 @export var block_type: String = ""
 @export var block_cost: int = 1
 @export var block_color: Texture2D
-@onready var label: Label = $Block/Label
+
+@onready var label: Label = $Block/BlockLabel
 @onready var mana_label: Label = $Block/Mana/Label
 
 var selected = false

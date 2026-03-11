@@ -4860,7 +4860,7 @@ script = ExtResource("8_7qbhm")
 ball_scene = ExtResource("9_ur5g0")
 grid = NodePath("../Grid")
 sprite_offset = Vector2(-2, 16)
-max_mana = 10
+max_mana = 3
 
 [node name="Hoop" parent="." unique_id=667016737 instance=ExtResource("10_funxa")]
 position = Vector2(329.19, 105)
@@ -4883,7 +4883,7 @@ block_type = "SHOOT!"
 block_cost = 2
 block_color = ExtResource("14_gybtd")
 
-[node name="drop_zone" parent="UI Block" unique_id=1787792880 instance=ExtResource("16_yj3rx")]
+[node name="Drop_zone" parent="UI Block" unique_id=1787792880 instance=ExtResource("16_yj3rx")]
 position = Vector2(30, 150)
 
 [node name="ManaBar" type="Control" parent="UI Block" unique_id=841233033]
@@ -4900,8 +4900,9 @@ pivot_offset = Vector2(23, 7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI Block/ManaBar" unique_id=980325355]
 layout_mode = 0
-offset_right = 43.0
-offset_bottom = 7.0
+offset_left = -1.0
+offset_right = 50.0
+offset_bottom = 17.0
 max_value = 7.0
 value = 7.0
 texture_over = ExtResource("16_ecec7")
