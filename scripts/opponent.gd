@@ -15,8 +15,8 @@ func _ready() -> void:
 	add_to_group("opponent")
 	anim.flip_h = true
 	anim.play("idle")
-	place_at(1, 1)
-	#spawn_random()
+	#place_at(1, 1)
+	spawn_random()
 
 func spawn_random() -> void:
 	var free_cells: Array = []
@@ -27,7 +27,6 @@ func spawn_random() -> void:
 			var forbidden = forbidden_cells.has(cell)
 			if valid and not forbidden:
 				free_cells.append(cell)
-	
 	if free_cells.is_empty():
 		push_warning("Opponent: nenhuma célula disponível!")
 		return
@@ -42,6 +41,10 @@ func place_at(grid_x: int, grid_y: int) -> void:
 	current_grid_pos = Vector2i(grid_x, grid_y)
 	grid.block_cell(grid_x, grid_y)
 	global_position = grid.get_cell_center(grid_x, grid_y) - sprite_offset
+	
+
+func get_spawn_cell() -> Vector2i:
+	return current_grid_pos
 
 func block_shot() -> void:
 	anim.play("block")

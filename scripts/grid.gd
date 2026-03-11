@@ -14,6 +14,9 @@ extends Node2D
 @export_category("Opponent Configuration")
 @export var has_opponent: bool = false
 @export var opponent_scene: PackedScene
+@export var opponent_count: int = 1
+
+var spawn_opponents: Array = []
 
 # Dados do grid
 var grid_cells: Array = []
@@ -71,9 +74,12 @@ func spawn_opponent() -> void:
 	if not opponent_scene:
 		push_warning("Grid: opponent_scene está vazio!")
 		return
-	var opponent = opponent_scene.instantiate()
-	opponent.grid = self
-	get_tree().current_scene.add_child(opponent)
+	for x in range(opponent_count):
+		var opponent = opponent_scene.instantiate()
+		opponent.grid = self
+		get_tree().current_scene.add_child(opponent)
+		spawn_opponents.append(opponent.get_spawn_cell())
+	print(spawn_opponents)
 
 func get_cell_at_position(world_pos: Vector2) -> Vector2i:
 	for y in range(grid_rows):
