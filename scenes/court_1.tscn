@@ -4851,10 +4851,7 @@ position = Vector2(140, 100)
 script = ExtResource("5_kk4ug")
 cell_texture = ExtResource("6_mp42f")
 draw_outline = false
-show_coordinates = false
-has_opponent = true
 opponent_scene = ExtResource("7_ecec7")
-opponent_count = 2
 
 [node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("7_fg8x2")]
 position = Vector2(210, 150)

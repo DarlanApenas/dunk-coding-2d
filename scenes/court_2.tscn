@@ -4854,7 +4854,7 @@ draw_outline = false
 show_coordinates = false
 has_opponent = true
 opponent_scene = ExtResource("20_hcij8")
-opponent_count = 2
+opponent_count = 3
 
 [node name="Player" parent="." unique_id=1836912939 node_paths=PackedStringArray("grid") instance=ExtResource("3_wcrji")]
 position = Vector2(210, 150)

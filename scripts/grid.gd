@@ -17,8 +17,8 @@ extends Node2D
 @export var opponent_count: int = 1
 
 var spawn_opponents: Array = []
+signal opponents_ready
 
-# Dados do grid
 var grid_cells: Array = []
 var blocked_cells: Dictionary = {}
 
@@ -79,7 +79,9 @@ func spawn_opponent() -> void:
 		opponent.grid = self
 		get_tree().current_scene.add_child(opponent)
 		spawn_opponents.append(opponent.get_spawn_cell())
-	print(spawn_opponents)
+	await get_tree().process_frame
+	opponents_ready.emit()
+	#print(spawn_opponents)
 
 func get_cell_at_position(world_pos: Vector2) -> Vector2i:
 	for y in range(grid_rows):
@@ -127,6 +129,8 @@ func get_cell_info(grid_x: int, grid_y: int) -> Dictionary:
 	if not is_valid_cell(grid_x, grid_y):
 		return {}
 	return grid_cells[grid_y][grid_x]
+
+
 
 func highlight_cell(grid_x: int, grid_y: int, color: Color = Color.YELLOW):
 	if not is_valid_cell(grid_x, grid_y):
