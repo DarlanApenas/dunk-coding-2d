@@ -4851,10 +4851,12 @@ position = Vector2(140, 100)
 script = ExtResource("5_kk4ug")
 cell_texture = ExtResource("6_mp42f")
 draw_outline = false
+show_coordinates = false
 opponent_scene = ExtResource("7_ecec7")
 
 [node name="Player" parent="." unique_id=1610710716 node_paths=PackedStringArray("grid") instance=ExtResource("7_fg8x2")]
 position = Vector2(210, 150)
+collision_mask = 1
 script = ExtResource("8_7qbhm")
 ball_scene = ExtResource("9_ur5g0")
 grid = NodePath("../Grid")

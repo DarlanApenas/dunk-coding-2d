@@ -87,7 +87,6 @@ func throw_blocked(opponent_pos: Vector2) -> void:
 	_rebound()
 
 func _rebound() -> void:
-	# Direção aleatória para trás (lado esquerdo em X negativo + Y aleatório)
 	var angle := randf_range(150.0, 210.0)  # arco de ângulos "para trás"
 	var radians := deg_to_rad(angle)
 	var direction := Vector2(cos(radians), sin(radians))

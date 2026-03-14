@@ -4854,7 +4854,7 @@ draw_outline = false
 show_coordinates = false
 has_opponent = true
 opponent_scene = ExtResource("20_hcij8")
-opponent_count = 3
+opponent_count = 2
 
 [node name="Player" parent="." unique_id=1836912939 node_paths=PackedStringArray("grid") instance=ExtResource("3_wcrji")]
 position = Vector2(210, 150)
@@ -4862,6 +4862,7 @@ script = ExtResource("4_mxqfc")
 ball_scene = ExtResource("5_hcij8")
 grid = NodePath("../Grid")
 sprite_offset = Vector2(-2, 16)
+max_mana = 7
 
 [node name="Hoop" parent="." unique_id=901889454 instance=ExtResource("10_oa3mv")]
 position = Vector2(329.19, 105)
